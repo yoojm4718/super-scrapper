@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Job Search - JM</title>
+    <style>
+      section {
+        display: grid;
+        gap: 20px;
+        grid-template-columns: repeat(5, 1fr);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Search Results about {{searchingBy}}</h1>
+    <h3>Found {{resultsNumber}} Results for {{searchingBy}}</h3>
+    <a href="/export?key={{searchingBy}}">Export To CSV</a>
+    <section>
+      <h4>Source</h4>
+      <h4>Title</h4>
+      <h4>Company</h4>
+      <h4>Location</h4>
+      <h4>Link</h4>
+      {% for job in jobs %}
+      <span>{{job.source}}</span>
+      <span>{{job.title}}</span>
+      <span>{{job.company}}</span>
+      <span>{{job.location}}</span>
+      {% if job.title != "No Results" %}
+      <span><a href="{{job.link}}" target="_blank">Application Link</a></span>
+      {% else %}
+      <span>Unavailable</span>
+      {% endif %} {% endfor %}
+    </section>
+  </body>
+</html>
